@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% set active_page = "profile" %}
+
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block body %}
+<div class="profilePage">
+    <div class="container profileContainer">
+        <h4>Profile</h4>
+        <form action="/profile" method="POST">
+            <h6>Change password</h6>
+            <div class="form-group pass-group">
+                <i class="fas fa-unlock"></i>
+                <input type="password" placeholder="Current password" name="curr-pass">
+                <div class="message"></div>
+            </div>
+            <div class="form-group new-pass-group">
+                <i class="fas fa-key"></i>
+                <input type="password" placeholder="New password" name="new-pass">
+                <div class="message"></div>
+            </div>
+            <div class="form-group confirm-group">
+                <i class="fas fa-key"></i>
+                <input type="password" placeholder="Confirm new password" name="confirm-pass">
+                <div class="message"></div>
+            </div>
+            <button class="custom-btn custom-btn-green" type="submit"><i class="fas fa-key btn-fa"></i>Change password</button>
+        </form>
+        <hr>
+        <button class="custom-btn custom-btn-warning deleteAccount"><i class="fas fa-trash-alt"></i>Delete
+            account</button>
+    </div>
+    <div class="overlay"></div>
+    <div class="deleteDialog">
+        <div class="header">
+            <div class="name">User deletion confirmation</div>
+            <div class="close">&times</div>
+        </div>
+        <div class="content">
+            <p>Are you sure you want to permanently deactivate your account?</p>
+            <div class="delete-checkbox">
+                <input type="checkbox" name="tc" id="deletionConfirm">
+                <label for="deletionConfirm">Yes, I'm sure</label>
+            </div>
+        </div>
+        <button class="deletionConfirmed custom-btn custom-btn-warning">Confirm</button>
+    </div>
+</div>
+{% endblock body %}

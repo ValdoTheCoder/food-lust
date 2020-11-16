@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/dfcae4f475.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/script.js"></script>
+    <link href="/static/favicon.ico" rel="icon">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+    <title>Food lust - {% block title %}{% endblock %}</title>
+</head>
+
+{% set navigation_bar = [
+    ('/', 'index', 'Home'),
+    ('/favorites', 'favorites', 'Favorites'),
+    ('/adv_search', 'adv_search', 'Advanced search'),
+    ('/feed', 'feed', 'Inspiration feed'),
+    ('/profile', 'profile', 'Profile'),
+    ('/logout', 'logout', 'Logout'),
+] -%}
+{% set active_page = active_page|default('index') -%}
+
+<body>
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
+        <a class="navbar-brand" href="/"><span id="logoLetter">F</span><span id="logo1">ood</span> <span
+                id="logo2">lust</span></a>
+        {% if session.user_id %}
+        <button class="navbar-toggler navbar-nav ml-auto mt-2" type="button" data-toggle="collapse"
+            data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mt-2">
+                {% for href, id, caption in navigation_bar %}
+                <li class="nav-item {% if id == active_page %}active{% endif
+                %}"><a class="nav-link" href="{{ href|e }}">{{ caption|e }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+        <span class=notLoggedInHeight></span>
+        {% endif %}
+    </nav>
+    <div class="container msg-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            <span>{{ message }}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    {% block body %}
+    {% endblock %}
+    <div class="footer">
+        <p>Copyright &#169; 2020 by <a href="https://0raclewind.github.io/" target="_blank">Valdo</a></p>
+        <div id="edamam-badge" data-color="badge">
+            <a href="https://www.edamam.com" title="Powered by Edamam" target="_blank">
+                <img alt="Powered by Edamam" src="https://foodluststorage.s3-eu-west-1.amazonaws.com/images/badge.png" height="40" width="200">
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

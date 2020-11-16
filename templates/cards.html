@@ -1,0 +1,120 @@
+{% extends 'layout.html' %}
+{% if params["favorites"] %}
+  {% set active_page = "favorites" %}
+{% endif %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block body %}
+<div class="container card-container">
+  <h3 class=cardsTitle>{{ params['title'] }}</h3>
+  <div class="card-row">
+    {% if not data %}
+    {% if params['favorites'] %}
+      <h5 class=noFavorites>No favorites to display...</h5>
+    {% else %}
+      <h5 class=noFavorites>No results to display...</h5>
+    {% endif %}
+    {% else %}
+    {% for item in data %}
+    <div class="card my-card">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs my-navigation" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" href="#info{{ item['id'] }}" role="tab" aria-controls="description"
+              aria-selected="true" data-toggle="tab">Info</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#ingredients{{ item['id'] }}" role="tab" aria-controls="history"
+              aria-selected="false" data-toggle="tab">Ingredients</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#nutrition{{ item['id'] }}" role="tab" aria-controls="deals" aria-selected="false"
+              data-toggle="tab">Nutrition information</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body my-card-body">
+        <h4 class="card-title my-title">{{ item["name"] }}</h4>
+        <div class="tab-content mt-3">
+          <div class="tab-pane active" id="info{{ item['id'] }}" role="tabpanel">
+            <img src="{{ item['image'] }}" class="card-img-top my-image" alt="No Image">
+            <div class="healthLabels">
+              {% for healthLabel in item['healthLabels'] %}
+              <div class="healthLabel">{{ healthLabel }}</div>
+              {% endfor %}
+            </div>
+
+          </div>
+
+          <div class="tab-pane" id="ingredients{{ item['id'] }}" role="tabpanel" aria-labelledby="ingredients-tab">
+            <h6 class="card-subtitle mb-2">Ingredient list</h6>
+            <ul class=ingredients>
+              {% for ingredient in item["ingredientList"]%}
+              <li>{{ ingredient }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="tab-pane nutrition" id="nutrition{{ item['id'] }}" role="tabpanel"
+            aria-labelledby="nutrition-tab">
+            <h6 class="card-subtitle mb-2 text-center">Nutrition information</h6>
+            <table>
+              {% for nutritionItem in item["nutritionInfo"] %}
+              <tr>
+                <td>{{ nutritionItem["label"] }}</td>
+                <td class="text-left">{{ nutritionItem["quantity"]}} {{ nutritionItem["unit"]}}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="text-center my-buttons">
+        <a href="{{ item['url'] }}" target=_blank><button type="button"
+            class="custom-btn custom-btn-green {{ params['button_class'] }}"><i class="fas fa-utensils"></i>Full
+            recipe</button></a>
+        {% if params['page'] %}
+        <button type="button" class="custom-btn custom-btn-green add {{ params['button_class'] }}"
+          name={{item['id']}}><i class="fas fa-star"></i>Add to favorites</button>
+        {% else %}
+        <button type="button" class="custom-btn custom-btn-green share {{ params['button_class'] }}"
+          name={{item['id']}}><i class="fas fa-share-alt"></i>Share to feed</button>
+        <button type="button" class="custom-btn custom-btn-warning delete" name={{item['id']}}><i
+            class="fas fa-trash-alt"></i></button>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+  
+  <div class="postWindow">
+    <div class="postHeader">
+      <div class="postTitle">Post to inspiration feed</div>
+      <div class="close">&times</div>
+    </div>
+    <div class="postBody">
+      <textarea id="postMsg" placeholder="Share your inspiration" maxlength=80></textarea>
+    </div>
+    <div class="postFooter">
+      <button class="custom-btn custom-btn-green sharePost">Share inspiration</button>
+    </div>
+  </div>
+  <div class="deleteFavDialog">
+    <div class="header">
+      <div class="name">Recipe deletion confirmation</div>
+      <div class="close">&times</div>
+    </div>
+    <div class="content">
+      <p>Are you sure you want to remove this recipe from favorites?</p>
+    </div>
+    <button class="recipeDeletion custom-btn custom-btn-warning">Confirm</button>
+  </div>
+</div>
+<div class="shareOverlay"></div>
+<div class="favoritesOverlay"></div>
+<i class="fas fa-star add-star"></i>
+{% endblock %}

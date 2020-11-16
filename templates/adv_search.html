@@ -1,0 +1,123 @@
+{% extends 'layout.html' %}
+{% set active_page = "adv_search" %}
+
+{% block title %}
+Advanced search
+{% endblock %}
+
+{% block body %}
+<div class="advSearchPage">
+    <div class="advSearchWrap">
+        <h3>Advanced search</h3>
+        <form class="" action="/adv_search" method="post">
+            <div class="diet text-center">
+                <label>Diet</label>
+                <select name="diet" class="custom-select">
+                    <option value="" selected>No diet</option>
+                    <option value="balanced">Balanced</option>
+                    <option value="high-protein">High-Protein</option>
+                    <option value="low-carb">Low-Carb</option>
+                    <option value="low-fat">Low-Fat</option>
+                </select>
+                <i class="fas fa-info-circle diet-info-btn"></i>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <input type="checkbox" id="alcohol-free" value="alcohol-free" name="alcohol">
+                        <label for="alcohol-free">Alcohol free</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="sugar-conscious" value="sugar-conscious" name="sugar">
+                        <label for="sugar-conscious">Sugar conscious</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id="peanut-free" value="peanut-free" name="peanut">
+                        <label for="peanut-free">Peanut free</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="tree-nut-free" value="tree-nut-free" name="tree-nut">
+                        <label for="tree-nut-free">Tree-nut free</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id="vegan" value="vegan" name="vegan">
+                        <label for="vegan">Vegan</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="vegetarian" value="vegetarian" name="vegetarian">
+                        <label for="vegetarian">Vegetarian</label>
+                    </td>
+                </tr>
+            </table>
+            <div class="input-group">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search recipes" aria-label="Search recipes" name="query">
+                <div class="input-group-append">
+                    <button class="custom-btn custom-btn-green" type="submit">Search</button>
+                </div>
+                <div class="message"></div>
+            </div>
+        </form>
+    </div>
+    <div class="overlay"></div>
+    <div class="dietInfo">
+        <div class="header">
+            <div class=title>Diet and Health Labels</div>
+            <div class="close">&times</div>
+        </div>
+        <div class="content">
+            <h6>Diet</h6>
+            <table>
+                <tr>
+                    <td class=label>Balanced</td>
+                    <td>Protein/Fat/Carb values in 15/35/50 ratio</td>
+                </tr>
+                <tr>
+                    <td class=label>High-Protein</td>
+                    <td>More than 50% of total calories from proteins</td>
+                </tr>
+                <tr>
+                    <td class="label">Low-Carb</td>
+                    <td>Less than 20% of total calories from carbs</td>
+                </tr>
+                <tr>
+                    <td class="label">Low-Fat</td>
+                    <td>Less than 15% of total calories from fat</td>
+                </tr>
+            </table>
+            <hr>
+            <h6>Health labels</h6>
+            <table>
+                <tr>
+                    <td class="label">Alcohol free</td>
+                    <td>No alcohol used or contained</td>
+                </tr>
+                <tr>
+                    <td class="label">Sugar conscious</td>
+                    <td>Less than 4g of sugar per serving</td>
+                </tr>
+                <tr>
+                    <td class="label">Peanut free</td>
+                    <td>No peanuts or products containing peanuts</td>
+                </tr>
+                <tr>
+                    <td class="label">Tree-nut free</td>
+                    <td>No tree nuts or products containing tree nuts</td>
+                </tr>
+                <tr>
+                    <td class="label">Vegan</td>
+                    <td>No meat, poultry, fish, dairy, eggs or honey</td>
+                </tr>
+                <tr>
+                    <td class="label">Vegetarian</td>
+                    <td>No meat, poultry, or fish</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

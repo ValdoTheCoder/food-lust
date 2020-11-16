@@ -1,0 +1,1262 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&family=Source+Sans+Pro:wght@400;600&family=Raleway:ital,wght@0,700;1,500&family=Ubuntu&family=Goldman&display=swap');
+
+/*
+Fonts
+Headings
+font-family: 'Raleway', sans-serif;
+Sub-headings
+font-family: 'Ubuntu', sans-serif;
+Main
+font-family: 'Source Sans Pro', sans-serif;
+Navbar
+font-family: 'Ubuntu', sans-serif;
+font-family: 'Goldman', cursive;
+
+Logo
+font-family: 'Pacifico', cursive;
+font-family: 'Permanent Marker', cursive;
+*/
+
+:root {
+  --main-bg: #e2ffe3;
+  --secondary-bg: #bfdcae;
+  --transparent-main: #2f6d22d0;
+  --less-transparent: #2e6d22ef;
+  --dominant-color: rgb(66, 139, 91);
+  --light-dominant-color: rgb(75, 172, 109);
+  --warning-color:  rgb(172, 41, 41);
+  --light-text: #fff;
+  --medium-text: rgb(126, 126, 126);
+  --dark-text: rgb(90, 90, 90);
+}
+
+body {
+    background-color: var(--main-bg);
+    color: var(--dark-text);
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.custom-btn {
+  border: none !important;
+  font-weight: 600 !important;
+  color: var(--light-text);
+  border-radius: 20px;
+  padding: 5px 15px;
+}
+
+.custom-btn:hover {
+  background-color: var(--light-dominant-color);
+}
+
+.custom-btn:focus {
+  outline: none;
+}
+
+.custom-btn-green {
+  background-color: var(--dominant-color);
+}
+
+.custom-btn-warning {
+  background-color: var(--warning-color);
+}
+
+.custom-btn-warning:hover {
+  background-color:   rgb(224, 52, 52);
+}
+
+i {
+  color: var(--medium-text);
+}
+
+button i {
+  color: var(--light-text);
+  margin-right: 10px;
+}
+
+.error {
+  box-sizing: border-box;
+  box-shadow: 0 0 5px 2px #f00 !important;
+  /* border: 4px solid #f44 !important; */
+}
+
+.message {
+  position: absolute;
+  color: var(--warning-color);
+  top: 45px;
+  left: 20px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.add-star {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  font-size: 50px;
+  color: var(--dominant-color);
+  pointer-events: none;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3),
+               -1px -1px 1px rgba(255,255,255,0.3),
+               3px 3px 5px rgba(0,0,0, 0.6);
+}
+
+/*
+Popup dialogs
+========================================
+*/
+.overlay, .favoritesOverlay, .shareOverlay {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% + 17.5px));
+  height: calc(100% + 35px);
+  width: 100%;
+  background-color: rgba(155,155,155,0.5);
+  z-index: 15;
+  display: none;
+  opacity: 0;
+  backdrop-filter: blur(2px);
+}
+
+/* .favoritesOverlay, .shareOverlay {
+  height: calc(100vh + 35px);
+  position: fixed;
+} */
+
+.postWindow, .deleteFavDialog {
+  position: fixed;
+  top: 30vh;
+  left: 50%;
+  margin-left: -160px;
+  z-index: 5;
+  background-color: #fff;
+  width: 320px;
+  border-radius: 20px;
+  transform: scale(0);
+  transition: 300ms ease-in-out;
+  z-index: 16;
+}
+
+.postHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  color: var(--light-text);
+  font-weight: 700;
+  border-radius: 20px 20px 0 0;
+  background-color: var(--dominant-color);
+}
+
+.postBody {
+  padding: 10px;
+}
+
+.postBody textarea {
+  width: 100%;
+  resize: none;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  box-shadow: inset 2px 2px 5px #aaa;
+  background-color: #eee;
+  transition: background-color 500ms ease-in-out;
+}
+
+.postBody textarea:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px #aaa;
+  background-color: #fff;
+}
+
+.postFooter {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.deleteDialog, .deleteFavDialog {
+  width: 320px;
+  background-color: #fff;
+  position: fixed;
+  transform: scale(0);
+  transition: 300ms ease-in-out;
+  border-radius: 20px;
+  text-align: center;
+  z-index: 16;
+}
+
+.deleteDialog .header, .deleteFavDialog .header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(172, 41, 41);
+  padding: 10px 15px;
+  color: var(--light-text);
+  font-weight: 700;
+  border-radius: 20px 20px 0 0;
+}
+
+.deleteDialog .content, .deleteFavDialog .content {
+  padding: 20px;
+}
+
+.deleteDialog .deletionConfirmed, .deleteFavDialog .recipeDeletion {
+  margin-bottom: 10px;
+}
+
+.deleteDialog .close, .deleteFavDialog .close, .postWindow .close {
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 0.65;
+}
+
+.input-group-append {
+  z-index: 3;
+}
+
+/*
+Headings styling
+========================================
+*/
+.advSearchWrap h3, .profileContainer h4, .formWrap h3, .cardsTitle, .my-title, .card-subtitle, .searchWrap h1, .feedContainer h3, .feedName, .dietInfo h6 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  color: var(--dark-text);
+}
+
+.feedCardHeader, .alert {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.cardsTitle, .my-title, .feedContainer h3 {
+  color: var(--medium-text);
+}
+
+.profileContainer h4 {
+  letter-spacing: 1px;
+}
+
+.profileContainer h6, .formWrap h6, .noFavorites, .card-subtitle, .searchWrap h3, .feedMsg {
+  font-family: 'Raleway', sans-serif;
+  font-style: italic;
+  color: var(--medium-text);
+}
+
+/*
+Checkbox styling
+========================================
+*/
+input[type="checkbox"] {
+  appearance: none;
+  width: 21px;
+  height: 21px;
+  background-color: #ccc;
+  box-shadow: inset 1px 1px 2px #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin: 2px 3px 1px 0;
+  transition: background-color 300ms ease-in-out;
+}
+
+input[type="checkbox"]::after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f00c";
+  font-weight: 600;
+  font-size: 12px;
+  text-shadow: 1px 1px 2px #555;
+  color: var(--light-text);
+  transform: scale(0);
+  transition: transform 100ms ease-in-out;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--dominant-color);
+  box-shadow: 1px 1px 3px #666;
+}
+
+input[type="checkbox"]:checked::after {
+  transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+  outline: none;
+}
+
+.advSearchWrap td, .my-checkbox, .delete-checkbox {
+  display: inline-flex;
+}
+
+/*
+Alert
+========================================
+*/
+.alert {
+  overflow: hidden;
+  border-radius: 0 0 10px 10px;
+  color: var(--light-text);
+  border: none;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+  opacity: 0.9;
+}
+
+.alert-danger {
+  background-color: var(--warning-color);
+}
+
+.alert-success {
+  background-color: var(--dominant-color);
+}
+
+.msg-container {
+  margin-top: 64px;
+  padding: 0;
+  position: absolute;
+  z-index: 5;
+  width: 320px;
+  margin-left: -160px;
+  left: 50%;
+  overflow: hidden;
+}
+
+/*
+Logo and navbar
+========================================
+*/
+.navbar-brand
+{
+  position: absolute;
+  width: 40%;
+  left: 30%;
+  top: -5px;
+  text-align: center;
+  margin-left: auto;
+  padding: 0;
+}
+
+#logoLetter, #logo1 {
+  font-family: 'Pacifico', cursive;
+}
+
+#logoLetter {
+  font-size: 50px;
+}
+
+#logo1 {
+  font-size: 25px;
+  margin-left: -8px;
+}
+
+#logo2 {
+  font-family: 'Permanent Marker', cursive;
+}
+
+.navbar-collapse {
+  font-size: 1.5rem;
+}
+
+.navbar {
+  background-color: var(--less-transparent) !important;
+  z-index: 10;
+  font-family: 'Ubuntu', sans-serif;
+  box-shadow: 0 5px 15px 5px rgba(0,0,0,0.3),
+              0 1px 2px rgba(0,0,0,0.3);
+}
+            
+#navbarNavDropdown .navbar-nav {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+}
+
+.notLoggedInHeight {
+  position: relative;
+  height: 48px;
+}
+
+/*
+Cards
+========================================
+*/
+.my-card {
+  border-radius: 20px;
+  color: var(--medium-text);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+  transition: transform 300ms ease-in-out;
+}
+
+.my-card .nav-link {
+border: none;
+  border-bottom: 1px solid transparent;
+}
+
+.my-card .nav-link:hover {
+  background-color: var(--light-dominant-color);
+  border-bottom: 1px solid #fff;
+}
+
+.my-card .nav-item .active:hover {
+  background-color: var(--light-text);
+  border-bottom: 1px solid #fff;
+}
+
+.card {
+  border: none;
+}
+
+.card-container {
+  position: relative;
+  max-width: 1400px;
+  padding: 0;
+  margin-top: 80px;
+  min-height: calc(100vh - 115px);
+}
+
+.cardsTitle {
+  text-align: center;
+  margin: 10px 0 0px;
+  font-size: 20px;
+}
+
+.navbar-collapse {
+  text-align: center;
+}
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  padding-top: 5px;
+  border-radius: 15px 15px 0 0 !important;
+  background-color: var(--dominant-color);
+  border-bottom: none;
+}
+
+.nutrition {
+  font-size: 14px;
+}
+
+.nutrition table {
+  margin: 0 auto !important;
+}
+
+.my-navigation {
+  justify-content: space-between;
+}
+
+.my-navigation a {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--light-text);
+  padding: 9px;
+  border-radius: 10px 10px 0 0 !important;
+}
+
+.my-title {
+  font-size: 18px;
+  height: 43px;
+  overflow: hidden;
+}
+
+.my-card-body {
+  height: 410px;
+  padding: 10px 10px 0;
+}
+
+.my-buttons button {
+  border-radius: 15px;
+  font-size: 13px;
+  padding: 10px 5px;
+  margin: 5px 0;
+}
+
+.search-btn {
+  width: 140px;
+}
+
+.favorites-btn {
+  width: 120px;
+}
+
+.my-image {
+  height: 250px;
+}
+
+.my-buttons .delete {
+  width: 42px;
+}
+
+.my-buttons .delete i {
+  margin: 0;
+}
+
+.btn-share {
+  width: 280px !important;
+  margin-top: 5px;
+}
+
+.card {
+  flex: 0 1 300px;
+  margin: 10px
+}
+
+.ingredients {
+  overflow-y: auto;
+  height: 315px;
+  width: 275px;
+  word-wrap: break-word;
+  font-size: 12px;
+  padding-left: 20px;
+}
+
+.healthLabels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 82px;
+  margin: 8px 0;
+  font-size: 11px;
+  overflow: hidden;
+}
+
+.healthLabel {
+  border: 2px solid #999;
+  border-radius: 20px;
+  font-weight: bold;
+  color: var(--medium-text);
+  margin: 2px;
+  padding: 2px 8px;
+  display: inline-block;
+}
+
+.noFavorites {
+  margin-top: 30vh;
+}
+
+/*
+Index page and advanced search page
+========================================
+*/
+.indexPage, .advSearchPage {
+  background-image: url("https://foodluststorage.s3-eu-west-1.amazonaws.com/images/main-bg-medium.jpg");
+}
+
+.indexPage h1 {
+  color: var(--light-text);
+  filter: drop-shadow(0px 0px 4px #000);
+  font-size: 25px;
+}
+
+.indexPage h3 {
+  color: var(--light-text);
+  filter: drop-shadow(0px 0px 2px #000);
+  font-size: 15px;
+  margin: 20px 0 15px;
+}
+
+.searchWrap, .advSearchWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  padding: 20px 10px;
+}
+
+.advSearchWrap {
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+.advSearchWrap table {
+  margin: 10px auto 10px;
+}
+
+.diet {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.diet i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 30px;
+  color: var(--dominant-color);
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: 100ms ease-in-out;
+}
+
+.diet i:hover {
+  right: 11px;
+  top: 9px;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+.diet label {
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+.diet select {
+  border-radius: 15px;
+  background-color: rgba(255,255,255,0.5);
+  width: 140px;
+  font-weight: 700;
+}
+
+.diet select:focus {
+  outline: none;
+}
+
+.diet option {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.dietInfo {
+  position: absolute;
+  width: 320px;
+  background-color: #fff;
+  border-radius: 20px;
+  transform: scale(0);
+  transition: 300ms ease-in-out;
+  z-index: 16;
+}
+
+.dietInfo .header {
+  display: flex;
+  justify-content: space-between;
+  background-color:rgb(66, 139, 91);
+  padding: 10px 15px;
+  color: var(--light-text);
+  font-weight: 700;
+  border-radius: 20px 20px 0 0;
+}
+
+.dietInfo .close {
+  cursor: pointer;
+  font-size: 30px;
+  line-height: 0.7;
+}
+
+.dietInfo .content {
+  padding: 10px;
+}
+
+.dietInfo table {
+  font-size: 11px;
+}
+
+.dietInfo .label {
+  font-weight: 700;
+  width: 90px;
+}
+
+.searchWrap input, .advSearchWrap input[type=text] {
+  border-radius: 20px 0 0 20px;
+  padding: 10px 0 10px 30px;
+  border: none;
+  font-weight: 700;
+  transition: 500ms ease-in-out;
+  color: #666;
+  width: 220px;
+  opacity: 0.7;
+}
+
+.searchWrap input:focus, .advSearchWrap input[type=text]:focus {
+  opacity: 0.8;
+  outline: none;
+  box-shadow: 0 0 15px var(--dominant-color);
+}
+
+.searchWrap i, .advSearchWrap .fa-search {
+  position: absolute;
+  top: 14px;
+  left: 10px;
+  z-index: 5;
+}
+
+.advSearchWrap td {
+  width: 145px;
+}
+
+.advSearchWrap label {
+  font-weight: 600;
+}
+
+.searchWrap button, .advSearchWrap button {
+  border-radius: 0 20px 20px 0;
+  border: none;
+}
+
+.searchWrap button, .searchWrap input {
+  filter: drop-shadow(3px 3px 3px #666);
+}
+
+/*
+Inspiration feed
+========================================
+*/
+.feedContainer {
+  margin-top: 80px;
+  min-height: calc(100vh - 110px);
+}
+
+.feedCard {
+  font-size: 12px;
+  width: 320px;
+  background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+}
+
+.feedCard img {
+  width: 100px;
+  height: 100px;
+}
+
+.feedCardHeader {
+  color: var(--light-text);
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--dominant-color);
+  padding: 5px 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.feedMsg {
+  padding: 10px;
+}
+
+.feedCardBody {
+  display: flex;
+  padding: 0 5px;
+}
+
+.feedInfo {
+  padding-left: 5px;
+}
+
+.feedName {
+  font-weight: bold;
+  padding: 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 36px;
+}
+
+.feedHealthLabels {
+  height: 65px;
+  font-size: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.feedFooter {
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 0;
+}
+
+.feedFooter button {
+  font-size: 12px;
+  width: 140px;
+  color: var(--light-text);
+}
+
+/*
+Profile, Login and register forms
+========================================
+*/
+.loginPage, .loginForm, .registerPage, .registerForm,
+.indexPage, .advSearchPage, .profilePage, .card-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginPage, .registerPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.profileContainer, .formPageWrap {
+  transform: scale(0.8);
+}
+
+.registerPage {
+  padding-top: 50px;
+}
+
+.tabs ul {
+  display: flex;
+  justify-content: center;
+  padding: 0%;
+  margin: 0;
+}
+
+.tabs ul a {
+  display: flex;
+  width: 155px;
+  justify-content: center;
+  list-style: none;
+  background-color: rgba(189, 189, 189, 0.9);
+  padding: 10px;
+  font-weight: 700;
+  backdrop-filter: blur(5px);
+  color: var(--light-text);
+  font-size: 18px;
+}
+
+.tabs ul a:nth-child(1) {
+  border-top-left-radius: 15px;
+}
+
+.tabs ul a:nth-child(2) {
+  border-top-right-radius: 15px;
+}
+
+.tabs .active {
+  background-color: rgba(255,255,255,0.9);
+  z-index: 100;
+  color: inherit;
+}
+
+.tabs a:hover {
+  text-decoration: none;
+}
+
+.formWrap, .profileContainer {
+  text-align: center;
+  width: 310px;
+  padding: 10px;
+  background-color: rgba(255,255,255,0.9);
+  border-radius: 0 0 15px 15px;
+  position: relative;
+  z-index: 3;
+}
+
+.formPageWrap, .profileContainer {
+  box-shadow: 5px 5px 10px #666;
+  border-radius: 15px;
+}
+
+.loginForm form, .registerForm form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginForm input, .profileContainer input, .registerForm .input {
+  margin-bottom: 10px;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 40px;
+  transition: 300ms ease-in-out;
+  width: 260px;
+  opacity: 0.6;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(109, 109, 109, 0.664);
+}
+
+.loginForm input:focus, .profileContainer input:focus, .registerForm .input:focus{
+  outline: none;
+  width: 270px;
+  box-shadow: 0 0 15px rgb(44, 168, 88);
+}
+
+.registerForm {
+  margin-bottom: 5px;
+}
+
+.formWrap h6 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group i {
+  position: absolute;
+  top: 14px;
+  left: 15px;
+  opacity: 0.8;
+  z-index: 3;
+}
+
+.registerForm .my-checkbox {
+  margin: -5px 0 15px 0;
+}
+
+.my-checkbox {
+  position: relative;
+}
+
+.my-checkbox .message {
+  top: 25px;
+}
+
+.signup {
+  display: inline-block;
+  margin: 15px 0 0 0 !important;
+  color: var(--dark-text) !important;
+}
+
+.signup a, .my-checkbox a {
+  font-weight: 700;
+  color: var(--dominant-color);
+}
+
+.loginPage, .registerPage, .indexPage, .advSearchPage, .profilePage {
+  position: relative;
+  padding-top: 60px;
+  height: calc(100vh - 30px);
+  width:100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.loginPage, .registerPage, .profilePage {
+  background-image: url("https://foodluststorage.s3-eu-west-1.amazonaws.com/images/login-bg-medium.jpg");
+}
+
+.tc {
+  margin-top: 60px;
+  margin-bottom: 100px;
+  padding: 40px 20px 20px 20px;
+  color: #555;
+  background-color: #fff;
+}
+
+.profileContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileContainer hr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+/*
+Footer
+========================================
+*/
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  background-color: #206939;
+  color: #bbb;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer p a {
+  color: #ccc;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer p a:hover {
+  color: #fff;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 12px;
+}
+
+#edamam-badge {
+  width: 100px;
+  margin-left: -10px;
+  overflow: hidden;
+  transform: scale(0.7);
+}
+
+#edamam-badge img {
+  margin-left: -50px;
+}
+
+#edamam-badge a {
+  width: 120px;
+}
+
+/*
+Custom scrollbar
+========================================
+*/
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--light-dominant-color);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background:var(--light-dominant-color);
+}
+
+/*
+Backdrop filter support
+========================================
+*/
+@supports ((-webkit-backdrop-filter: blur(5px)) or (backdrop-filter: blur(5px))) {
+  .profileContainer, .formWrap, .navbar {
+    backdrop-filter: blur(5px);
+  }
+  .profileContainer, .formWrap {
+    background-color: rgba(255,255,255,0.5);
+  }
+  .tabs .active {
+    background-color: rgba(255,255,255,0.5);
+  }
+  .tabs ul a {
+    background-color: rgba(189, 189, 189, 0.5);
+  }
+  .navbar {
+    background-color: var(--transparent-main) !important;
+  }
+}
+
+/*
+Media queries
+========================================
+*/
+@media only screen and (min-width: 360px) {
+  .navbar-brand
+  {
+    width: 30%;
+    left: 35%;
+  }
+  .indexPage h1 {
+    color: var(--light-text);
+    filter: drop-shadow(0px 0px 4px #000);
+    font-size: 28px;
+  }
+
+  .indexPage h3 {
+    color: var(--light-text);
+    filter: drop-shadow(0px 0px 2px #000);
+    font-size: 20px;
+    margin: 20px 0 25px;
+  }
+  .profileContainer, .formWrap {
+    margin-top: 0;
+  }
+  .profileContainer, .formPageWrap {
+    transform: scale(1);
+  }
+
+  .feedCard {
+    width: 350px;
+  }
+  .feedName {
+    font-size: 14px;
+  }
+  .feedHealthLabels {
+    font-size: 8px;
+  }
+  .feedCard img {
+    height: 110px;
+  }
+  .feedHealthLabels {
+    height: 74px;
+  }
+  .feedFooter button {
+    font-size: 13px;
+    width: 150px;
+  }
+
+  .searchWrap input, .advSearchWrap input[type=text] {
+    width: 240px;
+  }
+  .advSearchWrap, .searchWrap {
+    width: 340px;
+  }
+
+  .dietInfo {
+    width: 350px;
+  }
+  .dietInfo table {
+    font-size: 12px;
+  }
+  .dietInfo .label {
+    width: 95px;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .cardsTitle {
+    font-size: 25px;
+  }
+
+  .dietInfo {
+    width: 450px;
+  }
+  .dietInfo .header {
+    font-size: 20px;
+  }
+  .dietInfo table {
+    font-size: 16px;
+  }
+  .dietInfo .label {
+    width: 125px;
+  }
+  .dietInfo h6 {
+    font-size: 20px;
+  }
+
+  .feedCard {
+    width: 420px;
+  }
+  .feedCardHeader {
+    font-size: 14px;
+  }
+  .feedMsg {
+    padding: 10px 20px;
+  }
+  .feedName {
+    font-size: 15px;
+    height: 38px;
+  }
+  .feedHealthLabels {
+    font-size: 11px;
+  }
+  .feedCard img {
+    height: 130px;
+    width: 130px;
+  }
+  .feedHealthLabels {
+    height: 92px;
+  }
+  .feedFooter button {
+    font-size: 14px;
+    width: 160px;
+    margin: 5px 0;
+  }
+
+  .searchWrap {
+    width: 420px;
+  }
+  .searchWrap input {
+    width: 320px;
+  }
+
+  .loginPage, .registerPage, .indexPage, .advSearchPage, .profilePage {
+    height: calc(100vh - 35px);
+  }
+
+  .footer {
+    height: 35px;
+  }
+
+  .footer p {
+    font-size: 14px;
+  }
+
+  #edamam-badge {
+    margin-left: 0;
+    transform: scale(0.8);
+  }
+  
+  #edamam-badge img {
+    margin-left: -50px;
+  }
+
+  .feedContainer {
+    min-height: calc(100vh - 115px);
+  }
+}
+
+
+@media only screen and (min-width: 768px) {
+  .cardsTitle {
+    font-size: 30px;
+  }
+
+  .navbar-brand
+  {
+    width: 20%;
+    left: 40%;
+  }
+
+  .navbar-collapse {
+    font-size: 1.1rem;
+  }
+
+  .tc {
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    filter: drop-shadow(10px 10px 10px #777);
+  }
+
+  #navbarNavDropdown .navbar-nav .nav-item:nth-child(4) {
+    margin-left: auto;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .navbar-brand
+  {
+    width: 16%;
+    left: 42%;
+  }
+
+  .navbar {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .navbar-brand
+  {
+    width: 10%;
+    left: 45%;
+  }
+
+  .navbar {
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+}

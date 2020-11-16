@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block body %}
+<div class="loginPage text-center">
+  <div class="formPageWrap">
+    <div class="tabs">
+      <ul>
+        <a href="/login" class="active"><li>Login</li></a>
+        <a href="/register"><li>Register</li></a>
+      </ul>
+    </div>
+    <div class=formWrap>
+      <h3>Let's get started</h3>
+      <h6>This will be amazing</h6>
+      <div class="loginForm">
+        <form action="/login" method="post">
+          <div class="form-group username">
+            <i class="fas fa-user"></i>
+            <input autofocus name="username" placeholder="Username" type="text">
+            <div class="message"></div>
+          </div>
+          <div class="form-group password">
+            <i class="fas fa-unlock"></i>
+            <input name="password" placeholder="Password" type="password">
+            <div class="message"></div>
+          </div>
+          <button class="custom-btn custom-btn-green" type="submit">Sign In</button>
+        </form>
+      </div>
+      <h6 class=signup>Don't have an account?<br><a href="/register">Sign Up here</a></h6>
+    </div>
+  </div>
+</div>
+{% endblock %}

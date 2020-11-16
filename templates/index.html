@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% set active_page = "index" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block body %}
+<div class="indexPage">
+  <div class="searchWrap">
+    <h1>Embrace your inner chief</h1>
+    <h3>Find an awesome recipe and make your day</h3>
+    <form class="" action="/" method="post">
+      <div class="input-group">
+        <i class="fas fa-search"></i>
+        <input name="query" type="text" placeholder="Search recipes" aria-label="Search recipes">
+        <div class="input-group-append">
+          <button class="custom-btn custom-btn-green" type="submit">Search</button>
+        </div>
+        <div class="message"></div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

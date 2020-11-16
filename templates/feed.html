@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% set active_page = "feed" %}
+
+{% block title %}
+Inspiration feed
+{% endblock title %}
+
+{% block body %}
+<div class="container feedContainer">
+    <h3 class=text-center>Inspiration feed</h3>
+    {% for item in data %}
+    <div class="row">
+        <div class="feedCard">
+            <div class="feedCardHeader">
+                <div class="author">Shared by
+                    {% if session['user_id'] == item['user_id'] %}
+                    <b>You</b>
+                    {% else %}
+                    <b>{{ item['user']}}</b>
+                    {% endif %}
+                </div>
+                <div class="feedCardTime">{{ item["time_elapsed"] }}</div>
+            </div>
+            <div class="feedMsg">{{ item["msg"] }}</div>
+            <div class="feedCardBody">
+                <img src="{{ item['image'] }}" alt="">
+                <div class="feedInfo">
+                    <div class="feedName">{{ item["name"] }}</div>
+                    <div class="feedHealthLabels">
+                        {% for label in item["healthLabels"] %}
+                        <div class="healthLabel">{{ label }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="feedFooter">
+                <a href="{{ item['url'] }}" target=_blank>
+                    <button type="button" class="custom-btn custom-btn-green"><i class="fas fa-utensils"></i>Full
+                        recipe</button>
+                </a>
+                <button type="button" class="custom-btn custom-btn-green add" name="{{ item['id'] }}"><i
+                        class="fas fa-star"></i>Add to favorites</button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<i class="fas fa-star add-star"></i>
+{% endblock body %}

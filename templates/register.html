@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block body %}
+<div class="registerPage text-center">
+  <div class="formPageWrap">
+    <div class="tabs">
+      <ul>
+        <a href="/login"><li>Login</li></a>
+        <a href="/register" class="active"><li>Register</li></a>
+      </ul>
+    </div>
+    <div class="formWrap">
+      <h3>Sign up here</h3>
+      <h6>You're step away from amazing recipes</h6>
+      <div class="registerForm">
+        <form action="/register" method="post">
+          <div class="form-group username">
+            <i class="fas fa-user"></i>
+            <input autocomplete="off" autofocus class="input" name="username" value="{{username}}" placeholder="Username" type="text">
+            <div class="message"></div>
+          </div>
+          <div class="form-group password">
+            <i class="fas fa-unlock"></i>
+            <input class="input" name="password" placeholder="Password" type="password">
+            <div class="message"></div>
+          </div>
+          <div class="form-group confirm">
+            <i class="fas fa-unlock"></i>
+            <input class="input" name="passwordConfirm" placeholder="Confirm password" type="password">
+            <div class="message"></div>
+          </div>
+          <div class="my-checkbox">
+            <input type="checkbox" name="tc" id="customCheck1">
+            <label for="customCheck1">
+              I agree with <a href="/tc">Terms and conditions</a>
+            </label>
+            <div class="message"></div>
+          </div>
+          <button class="custom-btn custom-btn-green" type="submit">Create account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
