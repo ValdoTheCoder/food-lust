@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&family=Source+Sans+Pro:wght@400;600&family=Raleway:ital,wght@0,700;1,500&family=Ubuntu&family=Goldman&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&family=Source+Sans+Pro:wght@400;600&family=Raleway:ital,wght@0,700;1,500&family=Ubuntu&display=swap');
 
 /*
 Fonts
@@ -8,9 +8,9 @@ Sub-headings
 font-family: 'Ubuntu', sans-serif;
 Main
 font-family: 'Source Sans Pro', sans-serif;
+
 Navbar
 font-family: 'Ubuntu', sans-serif;
-font-family: 'Goldman', cursive;
 
 Logo
 font-family: 'Pacifico', cursive;
