@@ -34,6 +34,7 @@ body {
     background-color: var(--main-bg);
     color: var(--dark-text);
     font-family: 'Source Sans Pro', sans-serif;
+    /* font-family: sans-serif; */
 }
 
 .custom-btn {
@@ -118,11 +119,6 @@ Popup dialogs
   opacity: 0;
   backdrop-filter: blur(2px);
 }
-
-/* .favoritesOverlay, .shareOverlay {
-  height: calc(100vh + 35px);
-  position: fixed;
-} */
 
 .postWindow, .deleteFavDialog {
   position: fixed;
@@ -217,7 +213,7 @@ Popup dialogs
 Headings styling
 ========================================
 */
-.advSearchWrap h3, .profileContainer h4, .formWrap h3, .cardsTitle, .my-title, .card-subtitle, .searchWrap h1, .feedContainer h3, .feedName, .dietInfo h6 {
+.advSearchWrap h3, .profileContainer h4, .formWrap h3, .cardsTitle, .my-title, .card-subtitle, .searchWrap h1, .feedContainer h3, .feedName, .dietInfo h6, .tc h5 {
   font-family: 'Raleway', sans-serif;
   font-weight: 700;
   color: var(--dark-text);
@@ -568,7 +564,7 @@ Index page and advanced search page
   justify-content: center;
   align-items: center;
   width: 320px;
-  padding: 20px 10px;
+  padding: 20px 5px;
 }
 
 .advSearchWrap {
@@ -691,7 +687,7 @@ Index page and advanced search page
 }
 
 .advSearchWrap td {
-  width: 145px;
+  width: 155px;
 }
 
 .advSearchWrap label {
@@ -781,7 +777,7 @@ Inspiration feed
 
 .feedFooter button {
   font-size: 12px;
-  width: 140px;
+  width: 150px;
   color: var(--light-text);
 }
 
@@ -945,8 +941,7 @@ Profile, Login and register forms
 
 .tc {
   margin-top: 60px;
-  margin-bottom: 100px;
-  padding: 40px 20px 20px 20px;
+  padding: 40px 20px;
   color: #555;
   background-color: #fff;
 }
@@ -1103,14 +1098,14 @@ Media queries
   }
   .feedFooter button {
     font-size: 13px;
-    width: 150px;
+    width: 160px;
   }
 
   .searchWrap input, .advSearchWrap input[type=text] {
     width: 240px;
   }
   .advSearchWrap, .searchWrap {
-    width: 340px;
+    width: 350px;
   }
 
   .dietInfo {
@@ -1170,12 +1165,12 @@ Media queries
   }
   .feedFooter button {
     font-size: 14px;
-    width: 160px;
+    width: 170px;
     margin: 5px 0;
   }
 
   .searchWrap {
-    width: 420px;
+    width: 450px;
   }
   .searchWrap input {
     width: 320px;
