@@ -279,7 +279,7 @@ input[type="checkbox"]:focus {
   outline: none;
 }
 
-.advSearchWrap td, .my-checkbox, .delete-checkbox {
+.advSearchWrap td, .my-checkbox, .delete-checkbox, .remember-checkbox {
   display: inline-flex;
 }
 
@@ -864,7 +864,7 @@ Profile, Login and register forms
   align-items: center;
 }
 
-.loginForm input, .profileContainer input, .registerForm .input {
+.loginForm .input, .profileContainer input, .registerForm .input {
   margin-bottom: 10px;
   border-radius: 20px;
   border: none;
@@ -876,7 +876,7 @@ Profile, Login and register forms
   box-shadow: 0 0 10px rgba(109, 109, 109, 0.664);
 }
 
-.loginForm input:focus, .profileContainer input:focus, .registerForm .input:focus{
+.loginForm .input:focus, .profileContainer input:focus, .registerForm .input:focus{
   outline: none;
   width: 270px;
   box-shadow: 0 0 15px rgb(44, 168, 88);
@@ -912,6 +912,10 @@ Profile, Login and register forms
 
 .my-checkbox .message {
   top: 25px;
+}
+
+.remember-checkbox {
+  margin-bottom: 10px;
 }
 
 .signup {

@@ -81,10 +81,9 @@ def login():
     """Log user in"""
     # Forget any user_id
     session.clear()
-    # session["user_id"] = 13
+    
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
-
         user = user_login(conn, request.form.get("username").lower())
 
         # Ensure username exists and password is correct
@@ -99,6 +98,9 @@ def login():
 
         # Remember which user has logged in
         session["user_id"] = user[0]
+
+        if (request.form.get('remember') == 'on'):
+            session.permanent = True
 
         # Redirect user to home page
         flash("Welcome, " + user[1], 'success')
