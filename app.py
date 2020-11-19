@@ -99,6 +99,7 @@ def login():
         # Remember which user has logged in
         session["user_id"] = user[0]
 
+        # Check if 'Remember me' checkbox checked
         if (request.form.get('remember') == 'on'):
             session.permanent = True
 
