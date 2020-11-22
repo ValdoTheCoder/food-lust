@@ -8,11 +8,13 @@ let tcBtn = document.querySelector(".my-checkbox span");
 let acceptBtn = document.querySelector(".tc-accept");
 let tc = document.querySelector(".tc");
 
-registerBtn.addEventListener("click", registerForm);
-signupBtn.addEventListener("click", registerForm);
-loginBtn.addEventListener("click", loginForm);
-acceptBtn.addEventListener("click", tcAccept);
-tcBtn.addEventListener("click", tcOpen);
+if (window.location.pathname === "/login") {
+  registerBtn.addEventListener("click", registerForm);
+  signupBtn.addEventListener("click", registerForm);
+  loginBtn.addEventListener("click", loginForm);
+  acceptBtn.addEventListener("click", tcAccept);
+  tcBtn.addEventListener("click", tcOpen);
+}
 
 function loginForm() {
   loginBtn.classList.add("active");
@@ -55,7 +57,7 @@ $('#navigation a').on('click', function (e) {
 })
 
 window.setTimeout(function () {
-  $(".alert").animate({ 'top': '-70px' }, 500)
+  $(".alert").animate({ 'top': '-70px', 'opacity': '0' }, 500);
 }, 4000);
 
 // Add to favorites button function call

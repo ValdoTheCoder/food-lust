@@ -29,7 +29,7 @@ conn.autocommit = True
 
 # Configure session to use filesystem (instead of signed cookies)
 application.config["SESSION_FILE_DIR"] = mkdtemp()
-application.config["SESSION_PERMANENT"] = True
+application.config["SESSION_PERMANENT"] = False
 application.config["SESSION_TYPE"] = "filesystem"
 Session(application)
 
@@ -93,7 +93,7 @@ def login():
 
         # If user is not active
         if not user[3]:
-            flash("Sorry your account has been deactivated", 'danger')
+            flash("Account has been deactivated", 'danger')
             return render_template("login.html")
 
         # Remember which user has logged in
@@ -111,22 +111,21 @@ def login():
     else:
         return render_template("login.html")
 
-@application.route('/register', methods=["GET", "POST"])
+@application.route('/register', methods=["POST"])
 def register():
-    if request.method == "GET":
-        return render_template("register.html")
-    else:
-        username = request.form.get("username")
-        password = request.form.get("password")
+    username = request.form.get("username")
+    password = request.form.get("password")
 
-        try:
-            signup(conn, username.lower(), generate_password_hash(password))
-        except psycopg2.errors.UniqueViolation:
-            flash("User already exists", "danger")
-            return render_template("register.html")
-
-        flash("User created successfully", "success")
-        return redirect("/login")
+    try:
+        signup(conn, username.lower(), generate_password_hash(password))
+    except psycopg2.errors.UniqueViolation:
+        print("User exists")
+        flash("User already exists", "danger")
+        return redirect(url_for('login'))
+    
+    print("User created")
+    flash("User created successfully", "success")
+    return redirect("/login")
 
 @application.route("/logout")
 def logout():
