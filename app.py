@@ -136,10 +136,6 @@ def logout():
     # Redirect user to login form
     return redirect("/login")
 
-@application.route('/tc')
-def tc():
-    return render_template('tc.html')
-
 @application.route("/favorites")
 @login_required
 def favorites():

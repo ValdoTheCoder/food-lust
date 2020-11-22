@@ -1,9 +1,51 @@
+// Tabs and login/register slider JS only
+let loginBtn = document.querySelector(".login-btn");
+let registerBtn = document.querySelector(".register-btn");
+let signupBtn = document.querySelector(".signup span");
+let selector = document.querySelector(".selector");
+let forms = document.querySelectorAll(".form");
+let tcBtn = document.querySelector(".my-checkbox span");
+let acceptBtn = document.querySelector(".tc-accept");
+let tc = document.querySelector(".tc");
+
+registerBtn.addEventListener("click", registerForm);
+signupBtn.addEventListener("click", registerForm);
+loginBtn.addEventListener("click", loginForm);
+acceptBtn.addEventListener("click", tcAccept);
+tcBtn.addEventListener("click", tcOpen);
+
+function loginForm() {
+  loginBtn.classList.add("active");
+  registerBtn.classList.remove('active');
+  selector.style.left = 0;
+  forms.forEach((form) => {
+    form.style.left = "15px";
+  })
+}
+
+function registerForm() {
+  registerBtn.classList.add('active');
+  loginBtn.classList.remove("active");
+  selector.style.left = "155px";
+  forms.forEach((form) => {
+    form.style.left = "-275px";
+  })
+}
+
+function tcOpen() {
+  tc.style.transform = "scale(1)";
+}
+
+function tcAccept() {
+  tc.style.transform = "scale(0)";
+}
+
 // navbar collapse menu close when clicking outside the navbar in mobile
 $(document).click(function (event) {
   var click = $(event.target);
   var _open = $(".navbar-collapse").hasClass("show");
   if (_open === true && !click.hasClass("navbar-toggler")) {
-      $(".navbar-toggler").click();
+    $(".navbar-toggler").click();
   }
 });
 
