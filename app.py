@@ -121,11 +121,11 @@ def register():
     except psycopg2.errors.UniqueViolation:
         print("User exists")
         flash("User already exists", "danger")
-        return redirect(url_for('login'))
+        return redirect(url_for('.login', code="exists"))
     
     print("User created")
     flash("User created successfully", "success")
-    return redirect("/login")
+    return redirect(url_for("login", code="success"))
 
 @application.route("/logout")
 def logout():

@@ -8,12 +8,18 @@ let tcBtn = document.querySelector(".my-checkbox span");
 let acceptBtn = document.querySelector(".tc-accept");
 let tc = document.querySelector(".tc");
 
+
+
 if (window.location.pathname === "/login") {
   registerBtn.addEventListener("click", registerForm);
   signupBtn.addEventListener("click", registerForm);
   loginBtn.addEventListener("click", loginForm);
   acceptBtn.addEventListener("click", tcAccept);
   tcBtn.addEventListener("click", tcOpen);
+}
+
+if (window.location.search === "?code=exists") {
+  registerForm();
 }
 
 function loginForm() {

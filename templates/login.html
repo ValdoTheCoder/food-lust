@@ -209,10 +209,29 @@ Login
         and
         (3) to pre-screen or delete any Contributions at any time and for any reason, without notice. We have no
         obligation to monitor your Contributions.</p>
-      </div>
-      <div class=text-center>
-        <button class="tc-accept custom-btn custom-btn-green">Accept</button>
-      </div>
+    </div>
+    <div class=text-center>
+      <button class="tc-accept custom-btn custom-btn-green">Accept</button>
+    </div>
   </div>
 </div>
+<script>
+  const query = window.location.search;
+  const params = new URLSearchParams(query);
+  const code = params.get("code");
+
+  if (code) {
+    let msgContainer = document.querySelector(".msg-container");
+    let msgDiv = document.createElement("div");
+    msgDiv.classList.add("alert", "text-center");
+    if (code === "exists") {
+      msgDiv.classList.add("alert-danger");
+      msgDiv.innerHTML = "User already exists";
+    } else if (code === "success") {
+      msgDiv.classList.add("alert-success");
+      msgDiv.innerHTML = "User has been created";
+    }
+    msgContainer.appendChild(msgDiv);
+  }
+</script>
 {% endblock %}

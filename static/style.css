@@ -292,7 +292,11 @@ Alert
   color: var(--light-text);
   border: none;
   box-shadow: 0 5px 10px rgba(0,0,0,0.5);
-  opacity: 0.9;
+  opacity: 0.85;
+  text-align: center;
+  font-weight: 600;
+  text-shadow: 0 0 3px black;
+  letter-spacing: .3px;
 }
 
 .alert-danger {
@@ -312,6 +316,7 @@ Alert
   margin-left: -160px;
   left: 50%;
   overflow: hidden;
+  pointer-events: none;
 }
 
 /*
