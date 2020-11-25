@@ -48,23 +48,25 @@ function tcAccept() {
   tc.style.transform = "scale(0)";
 }
 
-// navbar collapse menu close when clicking outside the navbar in mobile
-$(document).click(function (event) {
-  var click = $(event.target);
-  var _open = $(".navbar-collapse").hasClass("show");
-  if (_open === true && !click.hasClass("navbar-toggler")) {
-    $(".navbar-toggler").click();
-  }
+$(document).ready(function () {
+  // navbar collapse menu close when clicking outside the navbar in mobile
+  $(document).click(function (event) {
+    var click = $(event.target);
+    var _open = $(".navbar-collapse").hasClass("show");
+    if (_open === true && !click.hasClass("navbar-toggler")) {
+      $(".navbar-toggler").click();
+    }
+  });
+
+  $('#navigation a').on('click', function (e) {
+    e.preventDefault()
+    $(this).animate().tab('show')
+  })
+
+  window.setTimeout(function () {
+    $(".alert").animate({ 'top': '-70px', 'opacity': '0' }, 500);
+  }, 4000);
 });
-
-$('#navigation a').on('click', function (e) {
-  e.preventDefault()
-  $(this).animate().tab('show')
-})
-
-window.setTimeout(function () {
-  $(".alert").animate({ 'top': '-70px', 'opacity': '0' }, 500);
-}, 4000);
 
 // Add to favorites button function call
 $(function () {
