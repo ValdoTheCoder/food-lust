@@ -97,10 +97,7 @@ def time_elapsed_string(time):
         hours = secs // 60 // 60
         # If less than 60 seconds passed
         if secs < 60:
-            if str(secs)[-1:] == '1':
-                return "%i second ago" % secs
-            else:
-                return "%i seconds ago" % secs
+            return "Just now"
         # If less than 1 hour passed
         elif secs < 3600:
             if str(mins)[-1:] == '1':
