@@ -601,14 +601,25 @@ Index page and advanced search page
   font-size: 30px;
   color: var(--dominant-color);
   cursor: pointer;
+  animation: jump 1s linear forwards 2s;
 }
 
 @keyframes jump {
-  0% {
-    
+  20% {
+    opacity: 1;
+  }
+  35% {
+    top: 10px;
+  }
+  45% {
+    top: 0;
+  }
+  55% {
+    top: 10px;
   }
   100% {
-
+    top: 10px;
+    opacity: 1;
   }
 }
 
