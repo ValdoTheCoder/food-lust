@@ -3,3 +3,4 @@ virt/
 .env
 pak.sh
 food-lust.zip
+.vscode/
