@@ -28,7 +28,7 @@ conn = psycopg2.connect(connect_string)
 conn.autocommit = True
 
 # Configure session to use filesystem (instead of signed cookies)
-application.config["SESSION_FILE_DIR"] = mkdtemp()
+# application.config["SESSION_FILE_DIR"] = mkdtemp()
 application.config["SESSION_PERMANENT"] = False
 application.config["SESSION_TYPE"] = "filesystem"
 Session(application)
